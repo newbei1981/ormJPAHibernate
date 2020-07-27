@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Для обобщенной JPA файл будет называтся persistence.xml в папке META-INF JPA -->
+<!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+<!--Для обобщенной JPA структура конфигурации будет отличатся -->
+    <session-factory>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+
+        <!-- Если приложение не Desctop а Web  то указываются name="connection.datasource",
+        а не  <property name="connection...(url,username,password)">…</property>-->
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/myschema?serverTimezone=UTC
+        </property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+
+        <property name="connection.pool_size">1</property>
+
+        <!-- Если поставить вместо update create то таблица пересоздастца и внесет изменения-->
+        <property name="hbm2ddl.auto">update</property>
+
+        <property name="show_sql">true</property>
+
+        <mapping class="com.hibernate.FamilyMember"/>
+
+ <!--       <mapping class="com.jpa_crud.Users"/>  -->
+
+
+    </session-factory>
+
+</hibernate-configuration>
